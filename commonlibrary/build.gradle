@@ -1,0 +1,132 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //livedata  viewmodel
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha03'
+    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha03'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03'
+
+    //lifecycle
+    api 'androidx.lifecycle:lifecycle-common-java8:2.3.0-alpha03'
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+
+    //navigation
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.0-beta01'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.0-beta01'
+    api 'androidx.navigation:navigation-runtime:2.3.0-beta01'
+
+    //work
+    api 'androidx.work:work-runtime-ktx:2.4.0-beta01'
+    //room
+    api 'androidx.room:room-ktx:2.2.5'
+    //paging
+    api 'androidx.paging:paging-runtime:2.1.2'
+
+    api 'com.android.support:multidex:1.0.3'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api "com.google.code.gson:gson:$gsonVersion"
+
+    //glide
+    api "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Rx
+    api "io.reactivex.rxjava3:rxjava:$rxjavaVersion"
+    api "io.reactivex.rxjava3:rxandroid:$rxandroidVersion"
+    //retrofit
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    api "com.squareup.retrofit2:converter-gson:$converterGsonVersion"
+    api "com.squareup.retrofit2:adapter-rxjava3:$retrofit2AdapterVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$interceptorVersion"
+    api 'com.uber.autodispose2:autodispose:2.0.0'
+
+    //滚轮
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+
+    //adapter 库
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.3'
+
+    //权限库
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
+    //沉浸式
+    api 'com.jaeger.statusbarutil:library:1.5.1'
+
+    //适配库
+    api 'me.jessyan:autosize:1.2.1'
+    //工具包
+    api 'com.blankj:utilcodex:1.28.2'
+    //titlebar
+    api 'com.hjq:titlebar:6.0'
+
+    // tablayout
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //轮播图
+    api 'com.youth.banner:banner:2.0.8'
+    //bugly
+    api 'com.tencent.bugly:crashreport_upgrade:latest.release'
+
+    //图片选择
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.3'
+    api 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+
+    api('com.qmuiteam:qmui:2.0.0-alpha07') {
+        transitive = false
+    }
+    api('com.alibaba.android:vlayout:1.2.36@aar') {
+        transitive = true
+    }
+    api('com.alibaba.android:ultraviewpager:1.0.7.8@aar') {
+        transitive = true
+    }
+
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.2'
+    //通用的pop
+    api 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
+    //二维码
+    api 'cn.bingoogolapple:bga-qrcode-zxing:1.3.7'
+    //秒杀倒计时
+    api 'com.github.iwgang:countdownview:2.1.6'
+    // 验证码输入框
+    api 'com.github.WGwangguan:SeparatedEditText:1.2'
+
+}
