@@ -6,8 +6,5 @@ package com.example.myapplication
  *on 2020/5/28
  *描述:TODO
  */
-class Constants {
-    companion object{
-        const val BASE_URL = "http://baobab.kaiyanapp.com/api/"
-    }
+interface ApiService {
 }
