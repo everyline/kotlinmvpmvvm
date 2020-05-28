@@ -20,7 +20,7 @@ class RetryWhenDelay : Function<Flowable<Throwable>, Publisher<*>> {
     override fun apply(t: Flowable<Throwable>): Publisher<*> {
         return t.flatMap {
             return@flatMap if (it is ApiException) {
-                LogUtils.d(TAG, "===进入重试机制===")
+                LogUtils.d(TAG, "===进入重试机制===${retryCount}次")
                 //todo 重试机制代码
 
 
