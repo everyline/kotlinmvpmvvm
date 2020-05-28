@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import kotlin.properties.Delegates
 
 /**
  *creatd by 天天挂线
@@ -11,8 +12,14 @@ import androidx.multidex.MultiDexApplication
  *描述:TODO
  */
 class APP : MultiDexApplication() {
+    companion object {
+        var context: Context by Delegates.notNull()
+            private set
+    }
+
     override fun onCreate() {
         super.onCreate()
+        context=applicationContext;
     }
 
     override fun attachBaseContext(base: Context?) {

@@ -9,4 +9,13 @@
         <attr name="contentView" format="reference"/>
     </declare-styleable>
 
+    <!-- 自定义折叠 TextView  -->
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer" />
+        <attr name="animDuration" format="integer" />
+        <attr name="animAlphaStart" format="float" />
+        <attr name="expandDrawable" format="reference" />
+        <attr name="collapseDrawable" format="reference" />
+    </declare-styleable>
+
 </resources>
