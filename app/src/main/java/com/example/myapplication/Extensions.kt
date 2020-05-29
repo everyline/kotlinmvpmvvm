@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import android.content.Context
+import android.provider.Settings
+import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -61,4 +63,104 @@ fun Context.dataFormat(total: Long): String {
         (Math.round(mSpeed * 100) / 100.0).toString() + " MB"
     }
     return result
+}
+/**
+ * 判断是否为空 并传入相关操作
+ */
+fun <T> Any?.notNull(f: () -> T, t: () -> T): T {
+    return if (this != null) f() else t()
+}
+
+/**
+ * 检查是否启用无障碍服务
+ */
+fun Context.checkAccessibilityServiceEnabled(serviceName: String): Boolean {
+    val settingValue =
+        Settings.Secure.getString(
+            applicationContext.contentResolver,
+            Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+        )
+    return settingValue.notNull({
+        var result = false
+        val splitter = TextUtils.SimpleStringSplitter(':')
+        while (splitter.hasNext()) {
+            if (splitter.next().equals(serviceName, true)) {
+                result = true
+                break
+            }
+        }
+        result
+    }, { false })
+}
+/**
+ * 设置点击事件
+ * @param views 需要设置点击事件的view
+ * @param onClick 点击触发的方法
+ */
+fun setOnclick(vararg views: View?, onClick: (View) -> Unit) {
+    views.forEach {
+        it?.setOnClickListener { view ->
+            onClick.invoke(view)
+        }
+    }
+}
+/**
+ * 防止重复点击事件 默认0.5秒内不可重复点击
+ * @param interval 时间间隔 默认0.5秒
+ * @param action 执行方法
+ */
+var lastClickTime = 0L
+fun View.clickNoRepeat(interval: Long = 500, action: (view: View) -> Unit) {
+    setOnClickListener {
+        val currentTime = System.currentTimeMillis()
+        if (lastClickTime != 0L && (currentTime - lastClickTime < interval)) {
+            return@setOnClickListener
+        }
+        lastClickTime = currentTime
+        action(it)
+    }
+}
+
+/**
+ * 设置view显示
+ */
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+
+/**
+ * 设置view占位隐藏
+ */
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}
+
+/**
+ * 根据条件设置view显示隐藏 为true 显示，为false 隐藏
+ */
+fun View.visibleOrGone(flag:Boolean) {
+    visibility = if(flag){
+        View.VISIBLE
+    }else{
+        View.GONE
+    }
+}
+
+/**
+ * 根据条件设置view显示隐藏 为true 显示，为false 隐藏
+ */
+fun View.visibleOrInvisible(flag:Boolean) {
+    visibility = if(flag){
+        View.VISIBLE
+    }else{
+        View.INVISIBLE
+    }
+}
+
+/**
+ * 设置view隐藏
+ */
+fun View.gone() {
+    visibility = View.GONE
 }
